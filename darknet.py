@@ -215,10 +215,7 @@ if os.name == "nt":
         if os.path.exists(winNoGPUdll):
             lib = CDLL(winNoGPUdll, RTLD_GLOBAL)
             print("Notice: CPU-only mode")
-        else:
-            # Try the other way, in case no_gpu was compile but not renamed
-            lib = CDLL(winGPUdll, RTLD_GLOBAL)
-            print("Environment variables indicated a CPU run, but we didn't find {}. Trying a GPU run anyway.".format(winNoGPUdll))
+        
 else:
     lib = CDLL(os.path.join(
         os.environ.get('DARKNET_PATH', './'),
